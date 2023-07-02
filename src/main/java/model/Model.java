@@ -11,6 +11,7 @@ public class Model {
     Database_main db;
     Users users;
     Connection connection;
+    public Users user = new Users("","","");
     public Breeds breeds = new Breeds(0,"");
     public Authentications authentications = new Authentications("","");
 

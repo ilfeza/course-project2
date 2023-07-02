@@ -24,5 +24,15 @@ public class Users {
         this.phone_number = phone_number;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
 }

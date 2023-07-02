@@ -2,10 +2,11 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Breeds;
 import model.Model;
@@ -31,6 +32,7 @@ public class Controller_breeds implements EventHandler<ActionEvent> {
     private Button create = new Button("Добавить");
     private Button update = new Button("Изменить");
     private Button delete = new Button("Удалить");
+    private Group root = new Group();
 
     public Controller_breeds(Model model, Stage stage) throws SQLException {
         this.model = model;
@@ -60,7 +62,8 @@ public class Controller_breeds implements EventHandler<ActionEvent> {
         // добавляем породы в таблицу
         table.getItems().addAll(breedsList);
 
-        FlowPane root = new FlowPane(10, 10, table);
+        Pane root = new Pane();
+        root.getChildren().add(table);
         Scene scene = new Scene(root, 720, 480);
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -75,38 +78,44 @@ public class Controller_breeds implements EventHandler<ActionEvent> {
 
 
 
-        
+
+
 
         label_id.setLayoutX(360);
-        label_id.setLayoutY(100);
+        label_id.setLayoutY(50);
         root.getChildren().add(label_id);
 
         label_name.setLayoutX(360);
-        label_name.setLayoutY(200);
+        label_name.setLayoutY(100);
         root.getChildren().add(label_name);
 
         textField_id.setLayoutX(400);
-        textField_id.setLayoutY(100);
+        textField_id.setLayoutY(50);
         root.getChildren().add(textField_id);
 
         textField_name.setLayoutX(400);
-        textField_name.setLayoutY(200);
+        textField_name.setLayoutY(100);
         root.getChildren().add(textField_name);
 
         create.setLayoutX(300);
-        create.setLayoutX(300);
+        create.setLayoutY(200);
         create.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(create);
 
-        update.setLayoutX(350);
-        update.setLayoutY(300);
+        update.setLayoutX(370);
+        update.setLayoutY(200);
         update.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(update);
 
-        delete.setLayoutX(400);
-        delete.setLayoutY(300);
+        delete.setLayoutX(440);
+        delete.setLayoutY(200);
         delete.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(delete);
+
+        done.setLayoutX(300);
+        done.setLayoutY(300);
+        done.addEventHandler(ActionEvent.ACTION, this);
+        root.getChildren().add(done);
 
         stage.setScene(scene);
         stage.show();
