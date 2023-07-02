@@ -14,6 +14,7 @@ public class Controller_account  implements EventHandler<ActionEvent> {
     private Stage stage;
     private Model model;
     private Button change_data = new Button("Изменить рег. данные");
+    private Button breeds = new Button("Список пород");
     private Group root = new Group();
     private Scene scene = new Scene(root, 720, 480);
 
@@ -26,6 +27,11 @@ public class Controller_account  implements EventHandler<ActionEvent> {
         change_data.setLayoutY(140);
         change_data.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(change_data);
+        
+        breeds.setLayoutX(360);
+        breeds.setLayoutY(200);
+        breeds.addEventHandler(ActionEvent.ACTION, this);
+        root.getChildren().add(breeds);
 
         stage.setScene(scene);
         stage.show();
@@ -33,9 +39,18 @@ public class Controller_account  implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if(actionEvent.getSource() == change_data){
-
-
+        try {
+            if(actionEvent.getSource() == change_data) {
+                stage.setScene(null);
+                new Controller_chanfe_data(model, stage);
+            }
+            if (actionEvent.getSource() == breeds){
+                stage.setScene(null);
+                new Controller_breeds(model,stage);
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
         }
 
     }

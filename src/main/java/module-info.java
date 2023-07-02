@@ -7,4 +7,6 @@ module com.example.courseproject2 {
     opens com.example.courseproject2 to javafx.fxml;
     exports com.example.courseproject2;
     exports main;
+
+    opens model;
 }

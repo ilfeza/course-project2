@@ -124,7 +124,7 @@ public class Controller_authorization implements EventHandler<ActionEvent> {
                 model.authentications.setLogin(textFieldName.getText());
                 model.authentications.setHash_password(textFieldPassword.getText());
                 //new Authentications(textField_name.getText(), textField_password.getText());
-                //new Controller_account(this.model, this.stage);
+                new Controller_account(this.model, this.stage);
             }
             else{
                 labelE = new Label("Неверный логин или пароль");
