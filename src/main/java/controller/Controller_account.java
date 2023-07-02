@@ -42,7 +42,7 @@ public class Controller_account  implements EventHandler<ActionEvent> {
         try {
             if(actionEvent.getSource() == change_data) {
                 stage.setScene(null);
-                new Controller_chanfe_data(model, stage);
+                new Controller_change_data(model, stage);
             }
             if (actionEvent.getSource() == breeds){
                 stage.setScene(null);

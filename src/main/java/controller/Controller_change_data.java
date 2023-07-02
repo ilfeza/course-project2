@@ -12,7 +12,7 @@ import model.Model;
 
 import java.sql.SQLException;
 
-public class Controller_chanfe_data implements EventHandler<ActionEvent> {
+public class Controller_change_data implements EventHandler<ActionEvent> {
     private Stage stage;
     private Model model;
     private Group root = new Group();
@@ -30,7 +30,7 @@ public class Controller_chanfe_data implements EventHandler<ActionEvent> {
 
 
 
-    public Controller_chanfe_data(Model model, Stage stage) throws SQLException {
+    public Controller_change_data(Model model, Stage stage) throws SQLException {
         this.model = model;
         this.stage = stage;
 

@@ -2,10 +2,7 @@ package model;
 
 import database.Database_main;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +40,29 @@ public class Breeds {
             breeds.add(breed);
         }
         return breeds;
+    }
+
+    public void updeteBreeds(String id, String name) throws SQLException {
+        String query = "UPDATE breeds SET name = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, name);
+        statement.setString(2, id);
+        statement.executeUpdate();
+    }
+
+    public void createBreeds(String id, String name) throws SQLException {
+
+        String query = "INSERT INTO breeds (id, name) VALUES (?, ?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, id);
+        statement.setString(2, name);
+        statement.executeUpdate();
+    }
+
+    public void deleteBreeds(String id, String name) throws SQLException {
+        String query = "DELETE FROM breeds WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, id);
+        statement.executeUpdate();
     }
 }
