@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class Model {
     Database_main db;
+    public Animals animals = new Animals("",0,0);
     Users users;
     Connection connection;
     public Users user = new Users("","","");
@@ -92,7 +93,6 @@ public class Model {
         statement3.setString(3, name_owner);
         statement3.executeUpdate();
     }
-
 
 
 

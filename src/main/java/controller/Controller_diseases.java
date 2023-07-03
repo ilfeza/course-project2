@@ -52,6 +52,7 @@ public class Controller_diseases implements EventHandler<ActionEvent> {
 
          */
 
+
         TableColumn<BreedDiseaseResult, Integer> idColumn = new TableColumn<>("№");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("breedId"));
         table.getColumns().add(idColumn);
