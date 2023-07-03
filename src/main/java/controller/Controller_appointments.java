@@ -5,8 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Model;
 
@@ -17,6 +19,14 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
     Label lbl;
 
     ComboBox<String> breedsComboBox;
+
+    private Label label_name = new Label("Кличка");
+    private Label label_nameOwner = new Label("Имя владельца");
+    private Label label_disease = new Label("Заболевание");
+    private Label label_date = new Label("Дата и время(YYYY-MM-DD hh:mm:ss)");
+    private Button add_appointment= new Button("Добавить");
+    private TextField textField_date = new TextField();
+    private Button done = new Button("Готово");
 
     private Stage stage;
     private Model model;
@@ -37,19 +47,50 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
         lbl.setLayoutX(200);
         lbl.setLayoutY(100);
 
+        label_nameOwner.setLayoutX(200);
+        label_nameOwner.setLayoutY(75);
+        root.getChildren().add(label_nameOwner);
+
+        label_name.setLayoutX(100);
+        label_name.setLayoutY(75);
+        root.getChildren().add(label_name);
+
         animalsComboBox.setLayoutX(100);
         animalsComboBox.setLayoutY(100);
         root.getChildren().add(animalsComboBox);
         root.getChildren().add(lbl);
 
+        textField_date.setLayoutX(300);
+        textField_date.setLayoutY(100);
+        root.getChildren().add(textField_date);
+
+        label_date.setLayoutX(300);
+        label_date.setLayoutY(75);
+        root.getChildren().add(label_date);
+
+
+
 
         breedsComboBox = new ComboBox<>();
         ObservableList<String> breedsList = model.diseases.getAllDisease2();
         breedsComboBox.setItems(breedsList);
+        label_disease.setLayoutX(100);
+        label_disease.setLayoutY(175);
+        root.getChildren().add(label_disease);
 
-        breedsComboBox.setLayoutX(300);
-        breedsComboBox.setLayoutY(100);
+        breedsComboBox.setLayoutX(100);
+        breedsComboBox.setLayoutY(200);
         root.getChildren().add(breedsComboBox);
+
+        done.setLayoutX(400);
+        done.setLayoutY(300);
+        done.addEventHandler(ActionEvent.ACTION,this);
+        root.getChildren().add(done);
+
+        add_appointment.setLayoutX(500);
+        add_appointment.setLayoutY(300);
+        add_appointment.addEventHandler(ActionEvent.ACTION,this);
+        root.getChildren().add(add_appointment);
 
 
         //FlowPane root = new FlowPane(10, 10, animalsComboBox, lbl);
@@ -65,6 +106,14 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
         try {
             if (actionEvent.getSource() == animalsComboBox){
                 lbl.setText(model.animals.getOwner(animalsComboBox.getValue()));
+            }
+            else if(actionEvent.getSource() == done) {
+                stage.setScene(null);
+                new Controller_account(model, stage);
+            }
+            else if(actionEvent.getSource() == add_appointment) {
+                stage.setScene(null);
+                new Controller_account(model, stage);
             }
 
         } catch (SQLException e) {

@@ -1,6 +1,8 @@
 package model;
 
 import database.Database_main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,7 +44,17 @@ public class Breeds {
         return breeds;
     }
 
-
+    public ObservableList<String> getAllBreeds2() throws SQLException {
+        ObservableList<String> animals = FXCollections.observableArrayList();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM `breeds`");
+        while (resultSet.next()) {
+            String name = resultSet.getString("name");
+            animals.add(name);
+            System.out.println(name);
+        }
+        return animals;
+    }
 
     public void updeteBreeds(String id, String name) throws SQLException {
         String query = "UPDATE breeds SET name = ? WHERE id = ?";

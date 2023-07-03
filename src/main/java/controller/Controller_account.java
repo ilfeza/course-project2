@@ -18,6 +18,7 @@ public class Controller_account  implements EventHandler<ActionEvent> {
     private Button diseases = new Button("Список распространенных заболеваний");
     private Button animals = new Button("Добавить животное");
     private Button appointment = new Button("Приём");
+    private Button addanimal = new Button("Добавить животное");
     private Group root = new Group();
     private Scene scene = new Scene(root, 720, 480);
 
@@ -51,6 +52,11 @@ public class Controller_account  implements EventHandler<ActionEvent> {
         appointment.addEventHandler(ActionEvent.ACTION,this);
         root.getChildren().add(appointment);
 
+        addanimal.setLayoutX(100);
+        addanimal.setLayoutY(380);
+        addanimal.addEventHandler(ActionEvent.ACTION,this);
+        root.getChildren().add(addanimal);
+
         stage.setScene(scene);
         stage.show();
     }
@@ -77,6 +83,10 @@ public class Controller_account  implements EventHandler<ActionEvent> {
             else if(actionEvent.getSource() == appointment){
                 stage.setScene(null);
                 new Controller_appointments(model,stage);
+            }
+            else if(actionEvent.getSource() == addanimal){
+                stage.setScene(null);
+                new Controller_addAnimal(model,stage);
             }
 
         }

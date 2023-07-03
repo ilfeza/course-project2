@@ -15,6 +15,7 @@ public class Model {
     public Diseases diseases = new Diseases("","");
     public Users user = new Users("","","");
     public Breeds breeds = new Breeds(0,"");
+    public Owners owners = new Owners("","","");
     public Authentications authentications = new Authentications("","");
     public BreedDiseaseResult breedDiseaseResult = new BreedDiseaseResult(0,"","","");
 
