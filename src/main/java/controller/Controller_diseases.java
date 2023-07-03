@@ -154,6 +154,21 @@ public class Controller_diseases implements EventHandler<ActionEvent> {
                 stage.setScene(null);
                 new Controller_account(model, stage);
             }
+            if (actionEvent.getSource() == update) {
+                model.breedDiseaseResult.updeteBreedDisease(textField_id.getText(), textField_breed.getText(),textField_scientific.getText(),textField_general.getText());
+                stage.setScene(null);
+                new Controller_diseases(model, stage);
+            }
+            else if (actionEvent.getSource() == create){
+                model.breedDiseaseResult.createBreedDisease(textField_id.getText(), textField_breed.getText(),textField_scientific.getText(),textField_general.getText());
+                stage.setScene(null);
+                new Controller_diseases(model, stage);
+            }
+            else if (actionEvent.getSource() == delete){
+                model.breedDiseaseResult.deleteBreedDisease(textField_id.getText(), textField_breed.getText(),textField_scientific.getText(),textField_general.getText());
+                stage.setScene(null);
+                new Controller_diseases(model, stage);
+            }
 
         }
         catch (SQLException e){

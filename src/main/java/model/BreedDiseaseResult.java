@@ -2,10 +2,7 @@ package model;
 
 import database.Database_main;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +71,74 @@ public class BreedDiseaseResult {
             results.add(result);
         }
         return results;
+    }
+
+
+    public void updeteBreedDisease(String id, String breeds_name, String scientific_name, String general_name) throws SQLException {
+        String query1 = "UPDATE diseases SET general_name = ? WHERE scientific_name = ?";
+        PreparedStatement statement1 = connection.prepareStatement(query1);
+        statement1.setString(1, general_name);
+        statement1.setString(2, scientific_name);
+        statement1.executeUpdate();
+
+        String query2 = "UPDATE breeds_disease SET diseases_name = ? WHERE breeds_id = ?";
+        PreparedStatement statement2 = connection.prepareStatement(query2);
+        statement2.setString(1, scientific_name);
+        statement2.setString(2, id);
+        statement2.executeUpdate();
+
+        String query3 = "UPDATE breeds SET name = ? WHERE id = ?";
+        PreparedStatement statement3 = connection.prepareStatement(query3);
+        statement3.setString(1, breeds_name);
+        statement3.setString(2, id);
+        statement3.executeUpdate();
+
+
+    }
+
+    public void createBreedDisease(String id, String breeds_name, String scientific_name, String general_name) throws SQLException {
+
+        String query1 = "INSERT INTO diseases (scientific_name, general_name) VALUES (?, ?)";
+        PreparedStatement statement1 = connection.prepareStatement(query1);
+        statement1.setString(1, scientific_name);
+        statement1.setString(2, general_name);
+        statement1.executeUpdate();
+
+        String query3 = "INSERT INTO breeds (id, name) VALUES (?, ?)";
+        PreparedStatement statement3 = connection.prepareStatement(query3);
+        statement3.setString(1, id);
+        statement3.setString(2, breeds_name);
+        statement3.executeUpdate();
+
+        String query2 = "INSERT INTO breeds_disease (breeds_id, diseases_name) VALUES (?, ?)";
+        PreparedStatement statement2 = connection.prepareStatement(query2);
+        statement2.setString(1, id);
+        statement2.setString(2, scientific_name);
+        statement2.executeUpdate();
+
+
+    }
+
+    public void deleteBreedDisease(String id, String breeds_name, String scientific_name, String general_name) throws SQLException {
+        String query2 = "DELETE FROM breeds_disease WHERE breeds_id = ? AND diseases_name = ?";
+        PreparedStatement statement2 = connection.prepareStatement(query2);
+        statement2.setString(1, id);
+        statement2.setString(2, scientific_name);
+        statement2.executeUpdate();
+
+        String query1 = "DELETE FROM diseases WHERE scientific_name = ?";
+        PreparedStatement statement1 = connection.prepareStatement(query1);
+        statement1.setString(1, scientific_name);
+        statement1.executeUpdate();
+
+        String query3 = "DELETE FROM breeds WHERE id = ?";
+        PreparedStatement statement3 = connection.prepareStatement(query3);
+        statement3.setString(1, id);
+        statement3.executeUpdate();
+
+
+
+
     }
 
 

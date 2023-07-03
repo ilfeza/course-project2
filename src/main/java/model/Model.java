@@ -69,6 +69,31 @@ public class Model {
         statement3.executeUpdate();
     }
 
+    public void addAnimal(String name_animal, String breed, String name_owner, String address, String phone) throws SQLException {
+        String query1 = "INSERT IGNORE INTO breeds SET name = ?";
+        PreparedStatement statement1 = connection.prepareStatement(query1);
+        statement1.setString(1, breed);
+        statement1.executeUpdate();
+
+        String query2 = "INSERT INTO owners (name, address, phone_number) VALUES (?, ?, ?)";
+        PreparedStatement statement2 = connection.prepareStatement(query2);
+        statement2.setString(1, name_owner);
+        statement2.setString(2, address);
+        statement2.setString(3, phone);
+        statement2.executeUpdate();
+
+        String query3 = "INSERT INTO animals (name, breeds_id, owners_id) " +
+                "SELECT ?, breeds.id, owners.id " +
+                "FROM breeds, owners " +
+                "WHERE breeds.name = ? AND owners.name = ?";
+        PreparedStatement statement3 = connection.prepareStatement(query3);
+        statement3.setString(1, name_animal);
+        statement3.setString(2, breed);
+        statement3.setString(3, name_owner);
+        statement3.executeUpdate();
+    }
+
+
 
 
 }
