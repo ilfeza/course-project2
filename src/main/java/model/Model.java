@@ -12,6 +12,7 @@ public class Model {
     public Animals animals = new Animals("",0,0);
     Users users;
     Connection connection;
+    public Diseases diseases = new Diseases("","");
     public Users user = new Users("","","");
     public Breeds breeds = new Breeds(0,"");
     public Authentications authentications = new Authentications("","");

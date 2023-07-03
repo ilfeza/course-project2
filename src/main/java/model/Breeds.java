@@ -42,6 +42,8 @@ public class Breeds {
         return breeds;
     }
 
+
+
     public void updeteBreeds(String id, String name) throws SQLException {
         String query = "UPDATE breeds SET name = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(query);

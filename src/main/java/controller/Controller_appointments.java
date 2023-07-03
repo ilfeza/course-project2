@@ -15,6 +15,9 @@ import java.sql.SQLException;
 public class Controller_appointments implements EventHandler<ActionEvent> {
     ComboBox<String> animalsComboBox;
     Label lbl;
+
+    ComboBox<String> breedsComboBox;
+
     private Stage stage;
     private Model model;
 
@@ -38,6 +41,16 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
         animalsComboBox.setLayoutY(100);
         root.getChildren().add(animalsComboBox);
         root.getChildren().add(lbl);
+
+
+        breedsComboBox = new ComboBox<>();
+        ObservableList<String> breedsList = model.diseases.getAllDisease2();
+        breedsComboBox.setItems(breedsList);
+
+        breedsComboBox.setLayoutX(300);
+        breedsComboBox.setLayoutY(100);
+        root.getChildren().add(breedsComboBox);
+
 
         //FlowPane root = new FlowPane(10, 10, animalsComboBox, lbl);
 
