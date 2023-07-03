@@ -65,4 +65,10 @@ public class Breeds {
         statement.setString(1, id);
         statement.executeUpdate();
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 }

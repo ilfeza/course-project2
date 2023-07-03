@@ -11,4 +11,8 @@ public class Breeds_disease {
     public String getDiseases_name() {
         return diseases_name;
     }
+
+    public void setDiseases_name(String diseases_name) {
+        this.diseases_name = diseases_name;
+    }
 }

@@ -15,6 +15,7 @@ public class Controller_account  implements EventHandler<ActionEvent> {
     private Model model;
     private Button change_data = new Button("Изменить рег. данные");
     private Button breeds = new Button("Список пород");
+    private Button diseases = new Button("Список заболеваний");
     private Group root = new Group();
     private Scene scene = new Scene(root, 720, 480);
 
@@ -33,6 +34,11 @@ public class Controller_account  implements EventHandler<ActionEvent> {
         breeds.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(breeds);
 
+        diseases.setLayoutX(360);
+        diseases.setLayoutY(260);
+        diseases.addEventHandler(ActionEvent.ACTION,this);
+        root.getChildren().add(diseases);
+
         stage.setScene(scene);
         stage.show();
     }
@@ -44,10 +50,15 @@ public class Controller_account  implements EventHandler<ActionEvent> {
                 stage.setScene(null);
                 new Controller_change_data(model, stage);
             }
-            if (actionEvent.getSource() == breeds){
+            else if (actionEvent.getSource() == breeds){
                 stage.setScene(null);
                 new Controller_breeds(model,stage);
             }
+            else if(actionEvent.getSource() == diseases){
+                stage.setScene(null);
+                new Controller_diseases(model,stage);
+            }
+
         }
         catch (SQLException e){
             throw new RuntimeException(e);

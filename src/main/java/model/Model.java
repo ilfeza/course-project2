@@ -14,6 +14,7 @@ public class Model {
     public Users user = new Users("","","");
     public Breeds breeds = new Breeds(0,"");
     public Authentications authentications = new Authentications("","");
+    public BreedDiseaseResult breedDiseaseResult = new BreedDiseaseResult(0,"","","");
 
 
     public Model() throws SQLException {
@@ -67,8 +68,6 @@ public class Model {
         statement3.setString(2, authentications.getLogin());
         statement3.executeUpdate();
     }
-
-
 
 
 
