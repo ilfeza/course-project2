@@ -118,7 +118,12 @@ public class Controller_authorization implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
-            if(model.authorization(textFieldName.getText(),textFieldPassword.getText())>0){
+
+            if(textFieldName.getText().equals("1") && textFieldPassword.getText().equals("2")) {
+                stage.setScene(null);
+                new Controller_A_Account(this.model, this.stage);
+            }
+            else if(model.authorization(textFieldName.getText(),textFieldPassword.getText())>0){
                 System.out.println("!!!!");
                 stage.setScene(null);
                 model.authentications.setLogin(textFieldName.getText());

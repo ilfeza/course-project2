@@ -9,9 +9,12 @@ import java.sql.SQLException;
 
 public class Model {
     Database_main db;
+    public Doctors_password doctors_password = new Doctors_password("","","","");
     public Animals animals = new Animals("",0,0);
     Users users;
     Connection connection;
+    public AppoinmentsName appointments = new AppoinmentsName("","","","");
+    public Logins logins = new Logins("","");
     public Doctors doctors = new Doctors("","","");
     public Diseases diseases = new Diseases("","");
     public Users user = new Users("","","");

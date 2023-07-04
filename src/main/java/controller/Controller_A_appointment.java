@@ -17,7 +17,7 @@ import model.Model;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Controller_appointments implements EventHandler<ActionEvent> {
+public class Controller_A_appointment implements EventHandler<ActionEvent> {
     ComboBox<String> animalsComboBox;
     Label lbl;
 
@@ -40,7 +40,7 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
     private Group root = new Group();
     private Scene scene = new Scene(root, 720, 480);
 
-    public Controller_appointments(Model model, Stage stage) throws SQLException {
+    public Controller_A_appointment(Model model, Stage stage) throws SQLException {
         this.model = model;
         this.stage = stage;
 
@@ -157,7 +157,7 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
             }
             else if(actionEvent.getSource() == done) {
                 stage.setScene(null);
-                new Controller_account(model, stage);
+                new Controller_A_account(model, stage);
             }
             else if(actionEvent.getSource() == add_appointment) {
                 if (textField_date.getText()=="" || animalsComboBox.getValue()=="" || lbl.getText()=="" || breedsComboBox.getValue()==""){
@@ -167,7 +167,7 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
                 else {
                     model.addAppointnent(textField_date.getText(), animalsComboBox.getValue(),lbl.getText(),breedsComboBox.getValue());
                     stage.setScene(null);
-                    new Controller_appointments(model, stage);
+                    new controller.Controller_A_appointments(model, stage);
                 }
 
             }
