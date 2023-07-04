@@ -19,6 +19,8 @@ public class Controller_account  implements EventHandler<ActionEvent> {
     private Button animals = new Button("Добавить животное");
     private Button appointment = new Button("Приём");
     private Button addanimal = new Button("Добавить животное");
+    private Button exit = new Button("Выход");
+
     private Group root = new Group();
     private Scene scene = new Scene(root, 720, 480);
 
@@ -27,35 +29,40 @@ public class Controller_account  implements EventHandler<ActionEvent> {
         this.model = model;
         this.stage = stage;
 
-        change_data.setLayoutX(360);
-        change_data.setLayoutY(140);
+        change_data.setLayoutX(300);
+        change_data.setLayoutY(300);
         change_data.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(change_data);
         
         breeds.setLayoutX(360);
         breeds.setLayoutY(200);
         breeds.addEventHandler(ActionEvent.ACTION, this);
-        root.getChildren().add(breeds);
+        //root.getChildren().add(breeds);
 
         diseases.setLayoutX(360);
         diseases.setLayoutY(260);
         diseases.addEventHandler(ActionEvent.ACTION,this);
-        root.getChildren().add(diseases);
+        //root.getChildren().add(diseases);
 
         animals.setLayoutX(360);
         animals.setLayoutY(320);
         animals.addEventHandler(ActionEvent.ACTION,this);
-        root.getChildren().add(animals);
+        //root.getChildren().add(animals);
 
-        appointment.setLayoutX(360);
-        appointment.setLayoutY(380);
+        appointment.setLayoutX(300);
+        appointment.setLayoutY(100);
         appointment.addEventHandler(ActionEvent.ACTION,this);
         root.getChildren().add(appointment);
 
-        addanimal.setLayoutX(100);
-        addanimal.setLayoutY(380);
+        addanimal.setLayoutX(300);
+        addanimal.setLayoutY(200);
         addanimal.addEventHandler(ActionEvent.ACTION,this);
         root.getChildren().add(addanimal);
+
+        exit.setLayoutX(300);
+        exit.setLayoutY(400);
+        exit.addEventHandler(ActionEvent.ACTION,this);
+        root.getChildren().add(exit);
 
         stage.setScene(scene);
         stage.show();
@@ -87,6 +94,10 @@ public class Controller_account  implements EventHandler<ActionEvent> {
             else if(actionEvent.getSource() == addanimal){
                 stage.setScene(null);
                 new Controller_addAnimal(model,stage);
+            }
+            else if(actionEvent.getSource() == exit){
+                stage.setScene(null);
+                new Controller_authorization(model,stage);
             }
 
         }

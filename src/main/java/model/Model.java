@@ -12,6 +12,7 @@ public class Model {
     public Animals animals = new Animals("",0,0);
     Users users;
     Connection connection;
+    public Doctors doctors = new Doctors("","","");
     public Diseases diseases = new Diseases("","");
     public Users user = new Users("","","");
     public Breeds breeds = new Breeds(0,"");
@@ -52,20 +53,20 @@ public class Model {
     }
 
     public void change_data(String name, String address, String phone_number) throws SQLException {
-        String query1 = "UPDATE users SET name = ? WHERE login = ?";
+        String query1 = "UPDATE doctors SET name = ? WHERE login = ?";
         PreparedStatement statement1 = connection.prepareStatement(query1);
         statement1.setString(1, name);
         statement1.setString(2, authentications.getLogin());
         statement1.executeUpdate();
 
-        String query2 = "UPDATE users SET address = ? WHERE login = ?";
+        String query2 = "UPDATE doctors SET address = ? WHERE login = ?";
         PreparedStatement statement2 = connection.prepareStatement(query2);
         statement2.setString(1, address);
         statement2.setString(2, authentications.getLogin());
         statement2.executeUpdate();
         //System.out.println(authentications.getHash_password());
 
-        String query3 = "UPDATE users SET phone_number = ? WHERE login = ?";
+        String query3 = "UPDATE doctors SET phone_number = ? WHERE login = ?";
         PreparedStatement statement3 = connection.prepareStatement(query3);
         statement3.setString(1, phone_number);
         statement3.setString(2, authentications.getLogin());
@@ -96,6 +97,33 @@ public class Model {
         statement3.executeUpdate();
     }
 
+    public void addAppointnent(String dateAndTime, String animalsName, String ownersName, String disease) throws SQLException {
+        String doctors_login = doctors.getLogin();
+        String query1 = "INSERT INTO appointments (date_and_time, animals_id, owners_id, doctors_id)\n" +
+                "VALUES (?, (SELECT id FROM animals WHERE name = ?), \n" +
+                "       (SELECT id FROM owners WHERE name = ?), \n" +
+                "       (SELECT id FROM doctors WHERE login = ?))";
+
+        PreparedStatement statement1 = connection.prepareStatement(query1);
+        statement1.setString(1, dateAndTime);
+        statement1.setString(2, animalsName);
+        statement1.setString(3, ownersName);
+        statement1.setString(4, doctors_login);
+        statement1.executeUpdate();
+
+
+
+
+
+        String query2 = "INSERT INTO appointments_disease (appointments_id, diseases_name)\n" +
+                "VALUES ((SELECT id FROM appointments WHERE date_and_time = ?), \n" +
+                "        (SELECT scientific_name FROM diseases WHERE general_name = ?))";
+        PreparedStatement statement2 = connection.prepareStatement(query2);
+        statement2.setString(1, dateAndTime);
+        statement2.setString(2, disease);
+        statement2.executeUpdate();
+
+    }
 
 
 }

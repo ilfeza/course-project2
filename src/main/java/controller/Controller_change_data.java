@@ -22,6 +22,7 @@ public class Controller_change_data implements EventHandler<ActionEvent> {
     private TextField textField_address = new TextField();
     private TextField textField_phone_number = new TextField();
     private Button change = new Button("Изменить");
+    private Button done = new Button("Назад");
     private Label label_change_data = new Label("Изменить рег. данные");
     private Label label_name = new Label("Имя");
     private Label label_address = new Label("Адрес");
@@ -33,10 +34,13 @@ public class Controller_change_data implements EventHandler<ActionEvent> {
     public Controller_change_data(Model model, Stage stage) throws SQLException {
         this.model = model;
         this.stage = stage;
+        textField_name.setText(String.valueOf(model.user.getAll(model.authentications.getLogin()).getName()));
+        textField_address.setText(String.valueOf(model.user.getAll(model.authentications.getLogin()).getAddress()));
+        textField_phone_number.setText(String.valueOf(model.user.getAll(model.authentications.getLogin()).getPhone_number()));
 
         label_change_data.setLayoutX(360);
         label_change_data.setLayoutY(20);
-        root.getChildren().add(label_change_data);
+        //root.getChildren().add(label_change_data);
 
         label_name.setLayoutX(20);
         label_name.setLayoutY(60);
@@ -67,6 +71,13 @@ public class Controller_change_data implements EventHandler<ActionEvent> {
         change.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(change);
 
+        done.setLayoutX(160);
+        done.setLayoutY(200);
+        done.addEventHandler(ActionEvent.ACTION, this);
+        root.getChildren().add(done);
+
+
+
         stage.setScene(scene);
         stage.show();
 
@@ -76,11 +87,19 @@ public class Controller_change_data implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
-            stage.setScene(null);
-            model.change_data(textField_name.getText(), textField_address.getText(), textField_phone_number.getText());
-            new Controller_account(this.model, this.stage);
+            if(actionEvent.getSource() == change) {
+                stage.setScene(null);
+                model.change_data(textField_name.getText(), textField_address.getText(), textField_phone_number.getText());
+                new Controller_account(this.model, this.stage);
+            }
+            else if (actionEvent.getSource() == done){
+                stage.setScene(null);
+                new Controller_account(this.model, this.stage);
+            }
+
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+
     }
 }

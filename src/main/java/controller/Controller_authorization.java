@@ -123,6 +123,7 @@ public class Controller_authorization implements EventHandler<ActionEvent> {
                 stage.setScene(null);
                 model.authentications.setLogin(textFieldName.getText());
                 model.authentications.setHash_password(textFieldPassword.getText());
+                model.doctors.setLogin(textFieldName.getText());
                 //new Authentications(textField_name.getText(), textField_password.getText());
                 new Controller_account(this.model, this.stage);
             }

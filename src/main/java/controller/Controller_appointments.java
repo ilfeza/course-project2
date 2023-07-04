@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Model;
 
@@ -24,6 +25,7 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
     private Label label_nameOwner = new Label("Имя владельца");
     private Label label_disease = new Label("Заболевание");
     private Label label_date = new Label("Дата и время(YYYY-MM-DD hh:mm:ss)");
+    private Label label_error = new Label("Неправильный формат значений");
     private Button add_appointment= new Button("Добавить");
     private TextField textField_date = new TextField();
     private Button done = new Button("Готово");
@@ -92,6 +94,10 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
         add_appointment.addEventHandler(ActionEvent.ACTION,this);
         root.getChildren().add(add_appointment);
 
+        label_error.setLayoutX(100);
+        label_error.setLayoutY(300);
+        label_error.setTextFill(Color.RED);
+
 
         //FlowPane root = new FlowPane(10, 10, animalsComboBox, lbl);
 
@@ -112,11 +118,23 @@ public class Controller_appointments implements EventHandler<ActionEvent> {
                 new Controller_account(model, stage);
             }
             else if(actionEvent.getSource() == add_appointment) {
-                stage.setScene(null);
-                new Controller_account(model, stage);
+                if (textField_date.getText()=="" || animalsComboBox.getValue()=="" || lbl.getText()=="" || breedsComboBox.getValue()==""){
+                    root.getChildren().add(label_error);
+                }
+                //System.out.println(animalsComboBox.getValue());
+                else {
+                    model.addAppointnent(textField_date.getText(), animalsComboBox.getValue(),lbl.getText(),breedsComboBox.getValue());
+                    stage.setScene(null);
+                    new Controller_account(model, stage);
+                }
+
             }
 
         } catch (SQLException e) {
+            //stage.setScene(null);
+
+
+
             throw new RuntimeException(e);
         }
 
