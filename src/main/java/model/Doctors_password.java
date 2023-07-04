@@ -54,15 +54,19 @@ public class Doctors_password {
     }
 
     public void updeteDoctors(String login, String password, String name, String address, String phone) throws SQLException {
+        password = Logins.hashString(password);
+        System.out.println(password);
         String query2 = "UPDATE doctors\n" +
                 "SET name = ?,\n" +
                 "    address = ?,\n" +
-                "    phone_number = ?,\n" +
+                "    phone_number = ?\n" +
                 "WHERE login = ?";
+
         PreparedStatement statement2 = connection.prepareStatement(query2);
         statement2.setString(1, name);
         statement2.setString(2, address);
         statement2.setString(3, phone);
+        statement2.setString(4, login);
         statement2.executeUpdate();
 
         String query1 = "UPDATE authentications SET hash_password = ? WHERE login = ?";
@@ -76,12 +80,12 @@ public class Doctors_password {
     }
 
     public void createDoctors(String login, String password, String name, String address, String phone) throws SQLException {
-
-        String query1 = "INSERT INTO authentications (login, hash_password) VALUES (?, ?)";
-        PreparedStatement statement1 = connection.prepareStatement(query1);
-        statement1.setString(1, login);
-        statement1.setString(2, password);
-        statement1.executeUpdate();
+        password = Logins.hashString(password);
+        String query = "INSERT INTO authentications (login, hash_password) VALUES (?, ?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, login);
+        statement.setString(2, password);
+        statement.executeUpdate();
 
         String query2 = "INSERT INTO doctors (name, address, phone_number, login)\n" +
                 "VALUES (?, ?, ?, ?)";
@@ -94,6 +98,7 @@ public class Doctors_password {
     }
 
     public void deleteDoctors(String login, String password, String name, String address, String phone) throws SQLException {
+        password = Logins.hashString(password);
         try {
             String query2 = "DELETE FROM doctors WHERE login = ?";
             PreparedStatement statement2 = connection.prepareStatement(query2);

@@ -157,7 +157,7 @@ public class Controller_A_appointment implements EventHandler<ActionEvent> {
             }
             else if(actionEvent.getSource() == done) {
                 stage.setScene(null);
-                new Controller_A_account(model, stage);
+                new Controller_A_Account(model, stage);
             }
             else if(actionEvent.getSource() == add_appointment) {
                 if (textField_date.getText()=="" || animalsComboBox.getValue()=="" || lbl.getText()=="" || breedsComboBox.getValue()==""){
@@ -167,7 +167,7 @@ public class Controller_A_appointment implements EventHandler<ActionEvent> {
                 else {
                     model.addAppointnent(textField_date.getText(), animalsComboBox.getValue(),lbl.getText(),breedsComboBox.getValue());
                     stage.setScene(null);
-                    new controller.Controller_A_appointments(model, stage);
+                    new controller.Controller_A_appointment(model, stage);
                 }
 
             }

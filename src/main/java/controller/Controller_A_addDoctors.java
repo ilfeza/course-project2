@@ -9,39 +9,41 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Doctors_password;
+import model.Logins;
 import model.Model;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
-    private Stage stage;
-    private Model model;
+    private final Stage stage;
+    private final Model model;
 
-    private Group root = new Group();
-    private Scene scene = new Scene(root, 720, 480);
-    private TextField textField_login = new TextField();
-    private TextField textField_password = new TextField();
-    private TextField textField_name = new TextField();
-    private TextField textField_address = new TextField();
-    private TextField textField_phone = new TextField();
+    private final Group root = new Group();
+    private final Scene scene = new Scene(root, 720, 480);
+    private final TextField textField_login = new TextField();
+    private final TextField textField_password = new TextField();
+    private final TextField textField_name = new TextField();
+    private final TextField textField_address = new TextField();
+    private final TextField textField_phone = new TextField();
 
-    private Label label_login = new Label("Логин");
-    private Label label_password = new Label("Пароль");
-    private Label label_name = new Label("Имя");
-    private Label label_address = new Label("Адрес");
-    private Label label_phone = new Label("Телефон");
+    private final Label label_login = new Label("Логин");
+    private final Label label_password = new Label("Пароль");
+    private final Label label_erroe = new Label("Значения введены некорректно");
+    private final Label label_name = new Label("Имя");
+    private final Label label_address = new Label("Адрес");
+    private final Label label_phone = new Label("Телефон");
 
-    private Button done = new Button("Готово");
-    private Button add = new Button("Добавить");
+    private final Button done = new Button("Готово");
+    private final Button add = new Button("Добавить");
 
     private Doctors_password selectedDoctors;
 
 
 
-    private Button create = new Button("Добавить");
-    private Button update = new Button("Изменить");
-    private Button delete = new Button("Удалить");
+    private final Button create = new Button("Добавить");
+    private final Button update = new Button("Изменить");
+    private final Button delete = new Button("Удалить");
 
     public Controller_A_addDoctors(Model model, Stage stage) throws SQLException {
         this.model = model;
@@ -152,6 +154,9 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
         done.addEventHandler(ActionEvent.ACTION, this);
         root.getChildren().add(done);
 
+        label_erroe.setLayoutX(600);
+        label_erroe.setLayoutY(400);
+
 
         stage.setScene(scene);
         stage.show();
@@ -167,8 +172,9 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
                 new Controller_A_Account(model, stage);
             }
             if (actionEvent.getSource() == create) {
+                System.out.println(Logins.hashString(textField_login.getText()));
                 model.doctors_password.createDoctors(textField_login.getText(),
-                        model.logins.hashString(textField_login.getText()),
+                        textField_login.getText(),
                         textField_name.getText(),
                         textField_address.getText(),
                         textField_phone.getText());
@@ -177,7 +183,7 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
             }
             else if (actionEvent.getSource() == update) {
                 model.doctors_password.updeteDoctors(textField_login.getText(),
-                        model.logins.hashString(textField_login.getText()),
+                        textField_login.getText(),
                         textField_name.getText(),
                         textField_address.getText(),
                         textField_phone.getText());
@@ -186,7 +192,7 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
             }
             else if (actionEvent.getSource() == delete) {
                 model.doctors_password.deleteDoctors(textField_login.getText(),
-                        model.logins.hashString(textField_login.getText()),
+                        textField_login.getText(),
                         textField_name.getText(),
                         textField_address.getText(),
                         textField_phone.getText());
@@ -197,7 +203,10 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
 
         }
         catch (SQLException e){
-            throw new RuntimeException(e);
+            System.out.println("1");
+            root.getChildren().add(label_erroe);
+
+
         }
     }
 }

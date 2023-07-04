@@ -153,7 +153,7 @@ public class Controller_diseases implements EventHandler<ActionEvent> {
 
             if (actionEvent.getSource() == done) {
                 stage.setScene(null);
-                new Controller_account(model, stage);
+                new Controller_A_Account(model, stage);
             }
             /*
             if (actionEvent.getSource() == update) {

@@ -77,7 +77,7 @@ public class Controller_A_Account  implements EventHandler<ActionEvent> {
 
             if (actionEvent.getSource() == breeds){
                 stage.setScene(null);
-                new Controller_breeds(model,stage);
+                new Controller_A_breeds(model,stage);
             }
             else if(actionEvent.getSource() == diseases){
                 stage.setScene(null);
@@ -89,11 +89,11 @@ public class Controller_A_Account  implements EventHandler<ActionEvent> {
             }
             else if(actionEvent.getSource() == appointment){
                 stage.setScene(null);
-                new Controller_appointments(model,stage);
+                new Controller_A_appointment(model,stage);
             }
             else if(actionEvent.getSource() == addanimal){
                 stage.setScene(null);
-                new Controller_addAnimal(model,stage);
+                new Controller_A_addAnimal(model,stage);
             }
             else if(actionEvent.getSource() == exit){
                 stage.setScene(null);
