@@ -14,16 +14,5 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Model model = new Model();
         new Controller_authorization(model, primaryStage);
-
-        /*
-
-        Group group = new Group();
-        Scene scene = new Scene(group, 720, 480);
-
-        primaryStage.setScene(scene);
-
-        primaryStage.show();
-
-         */
     }
 }

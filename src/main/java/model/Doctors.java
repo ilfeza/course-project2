@@ -6,17 +6,14 @@ public class Doctors {
     public String address;
     public String phone_number;
     public String login;
-
     public Doctors(String name, String address, String phone_number){
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public void setLogin(String login) {
         this.login = login;
     }

@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Breeds {
-    private int id;
-    private String name;
     Database_main db = Database_main.getInstance();
     Connection connection = db.getConnection();
-
+    private int id;
+    private String name;
 
     public Breeds(int id, String name) throws SQLException {
         this.id = id;
@@ -21,6 +20,9 @@ public class Breeds {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -55,7 +57,6 @@ public class Breeds {
         }
         return animals;
     }
-
     public void updeteBreeds(String id, String name) throws SQLException {
         String query = "UPDATE breeds SET name = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -63,16 +64,13 @@ public class Breeds {
         statement.setString(2, id);
         statement.executeUpdate();
     }
-
     public void createBreeds(String id, String name) throws SQLException {
-
         String query = "INSERT INTO breeds (id, name) VALUES (?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, id);
         statement.setString(2, name);
         statement.executeUpdate();
     }
-
     public void deleteBreeds(String id, String name) throws SQLException {
         String query = "DELETE FROM breeds WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -80,9 +78,7 @@ public class Breeds {
         statement.executeUpdate();
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
 
 }

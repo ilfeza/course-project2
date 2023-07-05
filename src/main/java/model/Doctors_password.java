@@ -30,7 +30,6 @@ public class Doctors_password {
             String name = resultSet.getString("name");
             String address = resultSet.getString("address");
             String phone_number = resultSet.getString("phone_number");
-
             Doctors_password doctors_password = new Doctors_password(login, name, address, phone_number);
             doctors_passwords.add(doctors_password);
         }

@@ -16,6 +16,8 @@ public class Logins {
     public static String hashString(String input) {
         String key = "veterinary_clinic";
         String hashedString = "";
+        hashedString = String.valueOf(input.hashCode());
+
 
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -30,6 +32,7 @@ public class Logins {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        System.out.println(" "+hashedString);
 
         return hashedString;
     }

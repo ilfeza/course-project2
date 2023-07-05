@@ -18,6 +18,7 @@ public class Controller_A_addAnimal  implements EventHandler<ActionEvent> {
     private Stage stage;
     private Model model;
     private Button done = new Button("Готово");
+    private Button add = new Button("Добавить");
     private Button addowner= new Button("Добавить владельца");
     private TextField textField_name = new TextField();
     private Label label_name = new Label("Имя животного");
@@ -79,6 +80,13 @@ public class Controller_A_addAnimal  implements EventHandler<ActionEvent> {
         done.addEventHandler(ActionEvent.ACTION,this);
         root.getChildren().add(done);
 
+        add.setLayoutX(500);
+        add.setLayoutY(300);
+        add.addEventHandler(ActionEvent.ACTION,this);
+        root.getChildren().add(add);
+
+        
+
 
 
 
@@ -97,6 +105,11 @@ public class Controller_A_addAnimal  implements EventHandler<ActionEvent> {
             else if(actionEvent.getSource() == done) {
                 stage.setScene(null);
                 new Controller_A_Account(model, stage);
+            }
+            else if(actionEvent.getSource() == add) {
+                stage.setScene(null);
+                model.animals.addAnimals(textField_name.getText(),breedsComboBox.getValue(),ownersComboBox.getValue());
+                new Controller_A_addAnimal(model, stage);
             }
 
 

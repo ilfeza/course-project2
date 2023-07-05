@@ -97,6 +97,19 @@ public class Animals {
 
     }
 
+    public void addAnimals(String name, String breeds, String owner) throws SQLException {
+        String query = "INSERT INTO animals (name, breeds_id, owners_id)\n" +
+                "SELECT ?, breeds.id, owners.id\n" +
+                "FROM breeds, owners\n" +
+                "WHERE breeds.name = ?\n" +
+                "AND owners.name = ?\n";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, name);
+        statement.setString(2, breeds);
+        statement.setString(3, owner);
+        statement.executeUpdate();
+    }
+
 
 
 

@@ -96,7 +96,6 @@ public class Controller_change_data implements EventHandler<ActionEvent> {
                 stage.setScene(null);
                 new Controller_account(this.model, this.stage);
             }
-
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

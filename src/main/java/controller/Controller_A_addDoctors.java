@@ -54,26 +54,21 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
         TableView<Doctors_password> table = new TableView<>();
         table.setPrefWidth(360);
         table.setPrefHeight(480);
-
-
         TableColumn<Doctors_password, String> loginColumn = new TableColumn<>("login");
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("login"));
         table.getColumns().add(loginColumn);
-
-
         TableColumn<Doctors_password, String> nameColumn = new TableColumn<>("Имя");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         table.getColumns().add(nameColumn);
-
         TableColumn<Doctors_password, String> addressColumn = new TableColumn<>("Адрес");
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         table.getColumns().add(addressColumn);
-
         TableColumn<Doctors_password, String> phoneColumn = new TableColumn<>("Телефон");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         table.getColumns().add(phoneColumn);
-
         List<Doctors_password> doctors_passwords = model.doctors_password.getAllDoctors();
+
+
         // добавляем породы в таблицу
         table.getItems().addAll(doctors_passwords);
 
@@ -203,7 +198,7 @@ public class Controller_A_addDoctors  implements EventHandler<ActionEvent> {
 
         }
         catch (SQLException e){
-            System.out.println("1");
+            //System.out.println("1");
             root.getChildren().add(label_erroe);
 
 
